@@ -10,6 +10,8 @@ website:
         text: Home
       - href: presentation 0.qmd
         text: presentation 0
+      - href: presentation1.qmd
+        text: presentation 1
 
 
 format:

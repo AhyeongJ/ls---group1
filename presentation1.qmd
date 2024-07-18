@@ -70,11 +70,12 @@ market2["market_count"].describe().round(2)
 market2.iloc[market2["market_count"].idxmax(),2]
 ```
 
-![](images/화면 캡처 2024-07-17 204543.png)
+![](images/화면%20캡처%202024-07-17%20204543.png)
 
 오 이상치가 전혀 아니군 ...!
 
 market_scale 파생변수 생성과 막대그래프 확인
+
 ```{python}
 plt.clf()
 # 점포수의 제 1 사분위: 50, 제 3 사분위 134 기준으로 makret_scale 생성 
@@ -84,22 +85,21 @@ sns.countplot(data = market2, x = 'market_scale', hue = 'market_scale')
 plt.show()
 ```
 
-
 온누리 상품권 빈도
+
 ```{python}
 market2['certificate'].value_counts()
 ```
+
 공중화장실 보유여부
+
 ```{python}
 market2['public_toilet'].value_counts()
 market2['parking_lot'].value_counts()
 ```
 
+conv_level 파생변수 생성과 막대그래프 확인 **conv_level 재수정할까?(화장실은 대부분 있는데, 주차장은 60%임)** *yes no no yes 현황 파악 다시 하기*
 
-
-conv_level 파생변수 생성과 막대그래프 확인
-__conv_level 재수정할까?(화장실은 대부분 있는데, 주차장은 60%임)__
-_yes no no yes 현황 파악 다시 하기_
 ```{python}
 plt.clf()
 market2['conv_level'] = np.where((market2['public_toilet'] == 'Y') & (market2['parking_lot'] == 'Y'), 'high', 
@@ -110,9 +110,9 @@ plt.show()
 ```
 
 ```{python}
+plt.clf()
 n_year = market2.groupby('year', as_index = False).agg(n = ("year", "count"))
 n_year
 sns.lineplot(data = n_year, x = "year", y = "n")
 plt.show()
 ```
-
